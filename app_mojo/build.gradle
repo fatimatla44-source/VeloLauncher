@@ -108,8 +108,8 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.customDebug
-            resValue 'string', 'application_package', 'git.artdeell.mjlaunch.debug'
-            resValue 'string', 'storageProviderAuthorities', 'git.artdeell.mjlaunch.scoped.gamefolder.debug'
+            resValue 'string', 'application_package', 'com.velolauncher.app.debug'
+            resValue 'string', 'storageProviderAuthorities', 'com.velolauncher.app.scoped.gamefolder.debug'
         }
         proguard {
             initWith debug
