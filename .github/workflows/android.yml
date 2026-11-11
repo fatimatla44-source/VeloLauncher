@@ -92,7 +92,7 @@ jobs:
           mkdir -p out
 
       # ── Release APK (ONE AND ONLY BUILD — signed, shrunk) ────────────────────
-      # Single clean artifact: CS-LAUNCHER-V3.apk
+      # Single clean artifact: VeloLauncher.apk
       # No DEBUG build, no NO-RUNTIME build, no run-number / timestamp clutter.
       - name: Build Release APK
         run: |
@@ -111,8 +111,8 @@ jobs:
           RELEASE_APK=$(find app_pojavlauncher/build/outputs/apk/release -name "*.apk" ! -name "*unsigned*" | head -n 1)
           if [ -n "$RELEASE_APK" ]; then
             cp "$RELEASE_APK" out/VeloLauncher.apk
-            md5sum    out/CS-LAUNCHER-V3.apk > out/CS-LAUNCHER-V3.md5
-            sha256sum out/CS-LAUNCHER-V3.apk > out/CS-LAUNCHER-V3.sha256
+            md5sum    out/VeloLauncher.apk > out/CS-LAUNCHER-V3.md5
+            sha256sum out/VeloLauncher.apk > out/CS-LAUNCHER-V3.sha256
           else
             echo "ERROR: Signed Release APK not found" && exit 1
           fi
@@ -120,18 +120,18 @@ jobs:
       # ── Verify APK Signature ─────────────────────────────────────────────────
       - name: Verify Signed APK
         run: |
-          ls -lh out/CS-LAUNCHER-V3.apk
+          ls -lh out/VeloLauncher.apk
           echo "Verifying APK signature..."
-          jarsigner -verify -verbose -certs out/CS-LAUNCHER-V3.apk | head -n 25 || true
+          jarsigner -verify -verbose -certs out/VeloLauncher.apk | head -n 25 || true
 
       # ── APK size report ──────────────────────────────────────────────────────
       - name: APK size report
         run: |
-          SIZE=$(du -sh out/CS-LAUNCHER-V3.apk | cut -f1)
+          SIZE=$(du -sh out/VeloLauncher.apk | cut -f1)
           echo "## APK Size" >> $GITHUB_STEP_SUMMARY
           echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
           echo "|------|------|" >> $GITHUB_STEP_SUMMARY
-          echo "| CS-LAUNCHER-V3.apk | $SIZE |" >> $GITHUB_STEP_SUMMARY
+          echo "| VeloLauncher.apk | $SIZE |" >> $GITHUB_STEP_SUMMARY
 
       # ── Upload artifact ──────────────────────────────────────────────────────
       # Clean static name — no run-number / timestamp suffixes.
@@ -139,11 +139,11 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: CS-LAUNCHER-V3
+          name: VeloLauncher
           path: |
-            out/CS-LAUNCHER-V3.apk
-            out/CS-LAUNCHER-V3.md5
-            out/CS-LAUNCHER-V3.sha256
+            out/VeloLauncher.apk
+            out/VeloLauncher.md5
+            out/VeloLauncher.sha256
           retention-days: 2
 
       # ── GitHub Release (single rolling release, always the latest APK) ───────
@@ -153,14 +153,14 @@ jobs:
         uses: ncipollo/release-action@v1
         if: github.event_name == 'workflow_dispatch'
         with:
-          artifacts: "out/CS-LAUNCHER-V3.apk,out/CS-LAUNCHER-V3.md5,out/CS-LAUNCHER-V3.sha256"
+          artifacts: "out/VeloLauncher.apk,out/CS-LAUNCHER-V3.md5,out/CS-LAUNCHER-V3.sha256"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: "velolauncher-v1"
           name: "CS Launcher V3"
           body: |
             ## CS Launcher V3
 
-            **Download:** `CS-LAUNCHER-V3.apk` — signed release build with bundled JRE 8.
+            **Download:** `VeloLauncher.apk` — signed release build with bundled JRE 8.
 
             > Verify integrity with the `.md5` / `.sha256` checksum files.
           allowUpdates: true
