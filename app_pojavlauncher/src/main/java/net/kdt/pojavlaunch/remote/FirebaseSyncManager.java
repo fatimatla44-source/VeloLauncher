@@ -106,7 +106,7 @@ public final class FirebaseSyncManager {
         String custom = dbUrlFromPrefs(ctx);
         if (!custom.isEmpty()) return custom;
         try {
-            String res = ctx.getString(R.string.firebase_database_url);
+            String res = "";
             if (res != null && res.startsWith("https://")) return res;
         } catch (Throwable ignored) {}
         return "https://cs-launcher-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
