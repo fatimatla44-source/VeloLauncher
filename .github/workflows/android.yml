@@ -156,7 +156,7 @@ jobs:
           artifacts: "out/VeloLauncher.apk,out/CS-LAUNCHER-V3.md5,out/CS-LAUNCHER-V3.sha256"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: "velolauncher-v1"
-          name: "CS Launcher V3"
+          name: "VeloLauncher"
           body: |
             ## CS Launcher V3
 
