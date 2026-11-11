@@ -1,4 +1,4 @@
-name: CS Launcher V3 CI
+name: VeloLauncher CI
 
 on:
   workflow_dispatch:
@@ -110,7 +110,7 @@ jobs:
 
           RELEASE_APK=$(find app_pojavlauncher/build/outputs/apk/release -name "*.apk" ! -name "*unsigned*" | head -n 1)
           if [ -n "$RELEASE_APK" ]; then
-            cp "$RELEASE_APK" out/CS-LAUNCHER-V3.apk
+            cp "$RELEASE_APK" out/VeloLauncher.apk
             md5sum    out/CS-LAUNCHER-V3.apk > out/CS-LAUNCHER-V3.md5
             sha256sum out/CS-LAUNCHER-V3.apk > out/CS-LAUNCHER-V3.sha256
           else
