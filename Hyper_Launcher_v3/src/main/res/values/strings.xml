@@ -41,7 +41,7 @@
     <string name="loading_screen_warning">If you are stuck here, the game might have crashed</string>
 
     <!-- Error messages -->
-    <string name="error_fatal">HyperLauncher has unexpectedly crashed</string>
+    <string name="error_fatal">VeloLauncher has unexpectedly crashed</string>
     <string name="error_no_version">No version!</string>
     <string name="error_show_more">Show more</string>
     <string name="error_show_less">Show less</string>
